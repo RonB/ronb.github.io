@@ -1,0 +1,21 @@
+title: Repository Documentation
+description: Repository-owned Open Mission documentation.
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 4
+  preview_words_before: 6
+  preview_words_after: 12
+heading_anchors: true
+aux_links_new_tab: true
+gh_edit_link: __OPEN_MISSION_GITHUB_EDIT_LINK_ENABLED__
+gh_edit_link_text: "Open this page on GitHub"
+gh_edit_repository: "__OPEN_MISSION_GITHUB_REPOSITORY_URL__"
+gh_edit_branch: "__OPEN_MISSION_GITHUB_EDIT_BRANCH__"
+gh_edit_source: ".open-mission/documentation"
+gh_edit_view_mode: "tree"
+mermaid:
+  version: "10.7.0"

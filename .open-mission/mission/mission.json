@@ -1,0 +1,143 @@
+{
+  "autostart": {
+    "mission": true
+  },
+  "humanInLoop": {
+    "enabled": true,
+    "pauseOnMissionStart": false
+  },
+  "execution": {
+    "maxParallelTasks": 1,
+    "maxParallelAgentExecutions": 1
+  },
+  "stageOrder": [
+    "prd",
+    "spec",
+    "implementation",
+    "audit",
+    "delivery"
+  ],
+  "stages": {
+    "prd": {
+      "stageId": "prd",
+      "displayName": "PRD",
+      "taskLaunchPolicy": {
+        "defaultAutostart": true
+      }
+    },
+    "spec": {
+      "stageId": "spec",
+      "displayName": "Spec",
+      "taskLaunchPolicy": {
+        "defaultAutostart": true
+      }
+    },
+    "implementation": {
+      "stageId": "implementation",
+      "displayName": "Implement",
+      "taskLaunchPolicy": {
+        "defaultAutostart": false
+      }
+    },
+    "audit": {
+      "stageId": "audit",
+      "displayName": "Audit",
+      "taskLaunchPolicy": {
+        "defaultAutostart": true
+      }
+    },
+    "delivery": {
+      "stageId": "delivery",
+      "displayName": "Delivery",
+      "taskLaunchPolicy": {
+        "defaultAutostart": false
+      }
+    }
+  },
+  "taskGeneration": [
+    {
+      "stageId": "prd",
+      "artifactTasks": false,
+      "templateSources": [
+        {
+          "templateId": "prd-from-brief",
+          "path": "01-PRD/tasks/01-prd-from-brief.md"
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "stageId": "spec",
+      "artifactTasks": false,
+      "templateSources": [
+        {
+          "templateId": "draft-spec",
+          "path": "02-SPEC/tasks/01-spec-from-prd.md"
+        },
+        {
+          "templateId": "plan-implementation",
+          "path": "02-SPEC/tasks/02-plan.md"
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "stageId": "implementation",
+      "artifactTasks": true,
+      "templateSources": [],
+      "tasks": []
+    },
+    {
+      "stageId": "audit",
+      "artifactTasks": false,
+      "templateSources": [
+        {
+          "templateId": "audit-observation",
+          "path": "04-AUDIT/tasks/01-run-boundary-audit.md"
+        },
+        {
+          "templateId": "debrief",
+          "path": "04-AUDIT/tasks/02-debrief.md"
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "stageId": "delivery",
+      "artifactTasks": false,
+      "templateSources": [
+        {
+          "templateId": "closeout",
+          "path": "05-DELIVERY/tasks/01-closeout.md"
+        },
+        {
+          "templateId": "workflow-evaluation",
+          "path": "05-DELIVERY/tasks/02-evaluate-workflow.md"
+        }
+      ],
+      "tasks": []
+    }
+  ],
+  "gates": [
+    {
+      "gateId": "implement",
+      "intent": "implement",
+      "stageId": "implementation"
+    },
+    {
+      "gateId": "verify",
+      "intent": "verify",
+      "stageId": "implementation"
+    },
+    {
+      "gateId": "audit",
+      "intent": "audit",
+      "stageId": "audit"
+    },
+    {
+      "gateId": "deliver",
+      "intent": "deliver",
+      "stageId": "delivery"
+    }
+  ]
+}
